@@ -17,7 +17,8 @@ def plot(x, y, color, plot_type):
     elif plot_type == 'confusion_matrix':
         target = x
         labels = y
-        label_names = ['0:Malign', '1:Benign']
+        y_label_names = ['0:Malign', '1:Benign']
+        x_label_names = ['Cluster 0', 'Cluster 1']
         matrix = metrics.confusion_matrix(target, labels)
         fig = plt.figure()
         ax = fig.add_subplot(111)
@@ -25,8 +26,8 @@ def plot(x, y, color, plot_type):
         plt.title('Confusion matrix of Kmeans')
         for i, j in itertools.product(range(matrix.shape[0]), range(matrix.shape[1])):
             plt.text(j, i, "{:,}".format(matrix[i, j]),horizontalalignment="center")
-        ax.set_xticklabels([''] + label_names)
-        ax.set_yticklabels([''] + label_names)
+        ax.set_xticklabels([''] + x_label_names)
+        ax.set_yticklabels([''] + y_label_names)
         plt.xlabel('Predicted by algorithm')
         plt.ylabel('True')
     
